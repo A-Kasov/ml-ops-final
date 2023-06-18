@@ -34,5 +34,21 @@ pipeline {
                 sh 'python3 -m pytest ./tests/test_model.py'
             }
         }
+        stage('Docker build') {
+            steps {
+                sh 'sudo docker build -t Yelp-Classifier .'
+            }
+        }
+        stage('Docker run') {
+            steps {
+                sh 'sudo docker run -d -p 7860:7860 Yelp-Classifier'
+                sh 'sleep 15s'
+            }
+        }
+        stage('Gradio test') {
+            steps {
+                sh 'python -m pytest ./tests/test_gradio.py'
+            }
+        }
     }
 }
