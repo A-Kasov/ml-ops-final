@@ -36,18 +36,18 @@ pipeline {
         }
         stage('Docker build') {
             steps {
-                sh 'sudo docker build -t Yelp-Classifier .'
+                sh 'sudo docker build -t yelp-classifier .'
             }
         }
         stage('Docker run') {
             steps {
-                sh 'sudo docker run -d -p 7860:7860 Yelp-Classifier'
+                sh 'sudo docker run -d -p 7860:7860 yelp-classifier'
                 sh 'sleep 15s'
             }
         }
         stage('Gradio test') {
             steps {
-                sh 'python -m pytest ./tests/test_gradio.py'
+                sh 'python3 -m pytest ./tests/test_gradio.py'
             }
         }
     }
