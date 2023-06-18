@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/A-Kasov/ml-ops-final.git'
+                git branch: 'data_v1', url: 'https://github.com/A-Kasov/ml-ops-final.git'
             }
         }
         stage('Install requirements') {
